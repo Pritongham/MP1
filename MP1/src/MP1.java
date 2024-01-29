@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 public class MP1 {
 
-    private static final int max = 3;
     private static int counter = 0;
     private static HashMap<String, String> credentials;
     private static JFrame login;
@@ -56,7 +55,7 @@ public class MP1 {
                 login.dispose();
             } else {
                 counter++;
-                if (counter == max) {
+                if (counter == 3) {
                     JOptionPane.showMessageDialog(null, "Sorry, you have reached the limit of 3 tries, goodbye!");
                     System.exit(0);
                 } else {
