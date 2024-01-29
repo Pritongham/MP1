@@ -1,16 +1,17 @@
-package test;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MP1 {
 
     private static int counter = 0;
-    private static HashMap<String, String> credentials;
+    private static final HashMap<String, String> credentials = new HashMap();
     private static JFrame login;
 
     public static void main(String[] args) {
-        credentials = readCredentials();
+        registerCredentials(credentials);
         showLogin();
     }
 
@@ -20,11 +21,11 @@ public class MP1 {
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         login.add(panel);
-        LoginComp(panel);
+        loginComp(panel);
         login.setVisible(true);
     }
 
-    private static void LoginComp(JPanel panel) {
+    private static void loginComp(JPanel panel) {
         panel.setLayout(null);
 
         JLabel userLabel = new JLabel("User:");
@@ -51,8 +52,8 @@ public class MP1 {
             String username = userText.getText();
             String password = new String(passwordText.getPassword());
 
-            if (isValid(username, password, credentials)) {
-                login.dispose();
+            if (isValid(username, password)) {
+                deleteCurrent();
             } else {
                 counter++;
                 if (counter == 3) {
@@ -66,13 +67,19 @@ public class MP1 {
             }
         });
     }
+    
+    private static void showGuestPanel(){
+    }
+    
+    private static void deleteCurrent(){
+        login.dispose();
+    }
 
-    private static boolean isValid(String username, String password, HashMap<String, String> credentials) {
+    private static boolean isValid(String username, String password) {
         return credentials.containsKey(username) && credentials.get(username).equals(password);
     }
 
-
-    private static void displayException(String title, String message) {
+    /*private static void displayException(String title, String message) {
         JFrame exceptionFrame = new JFrame(title);
         exceptionFrame.setSize(400, 150);
         exceptionFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -90,14 +97,10 @@ public class MP1 {
         exceptionPanel.add(ok, BorderLayout.SOUTH);
 
         exceptionFrame.setVisible(true);
-    }
+    }*/
 
-    private static HashMap<String, String> readCredentials() {
-        HashMap<String, String> credentials = new HashMap<>();
-
+    private static void registerCredentials(HashMap<String, String> credentials) {
         credentials.put("user1", "password1");
         credentials.put("user2", "password2");
-
-        return credentials;
     }
 }
