@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -20,7 +21,7 @@ public class AdminPanel {
     public static void showAdminPanel() {
         int height = MP1.passwords.size() + 1;
         
-        frame.setSize(600, height * 45 + 120);
+        frame.setSize(800, height * 45 + 120);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         frame.add(panel);
@@ -76,6 +77,12 @@ public class AdminPanel {
             deleteButton.setBackground(Color.red);
             
             deleteButton.addActionListener(e -> {
+                if(entry.getKey().equals(MP1.loggedInUser))
+                {
+                    JOptionPane.showMessageDialog(null, "Cannot delete your own account");
+                    return;
+                }
+                
                 MP1.roles.remove(entry.getKey());
                 MP1.passwords.remove(entry.getKey());
                 

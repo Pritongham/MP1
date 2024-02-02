@@ -20,7 +20,7 @@ public class GuestPanel {
     public static void showGuestPanel() {
         int height = MP1.passwords.size() + 1;
         
-        frame.setSize(500, height * 45 + 120);
+        frame.setSize(600, height * 45 + 120);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         frame.add(panel);
