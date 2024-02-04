@@ -11,14 +11,14 @@ public class MP1 {
         
         //TO IVAN:
         //EDIT:
-        //DAO.java - line 51
-        //DAO.java - line 69
+        //DAO.java - line 51 done
+        //DAO.java - line 69 done
         //
-        //AdminPanel.java - line 83
+        //AdminPanel.java - line 83 done
         //
-        //AddRecordPanel.java - line 98
-        //EditRecordPanel.java - line 83
-        //EditRecordPanel.java - line 91
+        //AddRecordPanel.java - line 98 done
+        //EditRecordPanel.java - line 83 
+        //EditRecordPanel.java - line 91 
 
         LoginPanel.constructLoginPanel();
     }

@@ -66,8 +66,8 @@ public class EditRecordPanel {
         gbc.gridwidth = 3;
         gbc.weightx = 0;
         gbc.fill = GridBagConstraints.NONE;
-        JButton addRecord = new JButton("Edit Record");
-        addRecord.addActionListener(e -> {
+        JButton updateRecord = new JButton("Edit Record");
+        updateRecord.addActionListener(e -> {
             if(String.valueOf(roleChoice.getSelectedItem()).equalsIgnoreCase("Guest")
                     && email.equalsIgnoreCase(MP1.loggedInUser))
             {
@@ -77,20 +77,14 @@ public class EditRecordPanel {
             {
                 if(!passwordText.getText().isEmpty())
                 {
-                    MP1.passwords.remove(email);
-                    MP1.passwords.put(email, passwordText.getText());
-                    
-                    //DATABASE PROCESS for password ONLY
-                    //DAO.deleteRecord(email, password, role); <- delete old record
-                    //DAO.addRecord(email, password, role); <- add new record
+                    MP1.passwords.put(email, passwordText.getText());  
                 } 
                 
-                MP1.roles.remove(email);
                 MP1.roles.put(email, String.valueOf(roleChoice.getSelectedItem()));
-                
-                //DATABASE PROCESS for roles ONLY (admin or guest)
-                //DAO.deleteRecord(email, password, role); <- delete old record
-                //DAO.addRecord(email, password, role); <- add new record
+
+        // Update the record in the database
+        DAO.updateRecord(email, passwordText.getText(), String.valueOf(roleChoice.getSelectedItem()));
+
                 
                 JOptionPane.showMessageDialog(null, "Success!");
                 panel.removeAll();
@@ -99,7 +93,7 @@ public class EditRecordPanel {
             }
         });
         
-        panel.add(addRecord, gbc);
+        panel.add(updateRecord, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 4;

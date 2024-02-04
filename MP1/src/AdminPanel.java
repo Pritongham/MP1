@@ -86,8 +86,7 @@ public class AdminPanel {
                 MP1.roles.remove(entry.getKey());
                 MP1.passwords.remove(entry.getKey());
                 
-                //DATABASE PROCESS
-                //DAO.deleteRecord(email, password, role);
+                DAO.deleteRecord(entry.getKey(), entry.getValue(), entry.getValue());
                 
                 panel.removeAll();
                 frame.dispose();

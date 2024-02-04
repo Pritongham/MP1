@@ -94,8 +94,7 @@ public class AddRecordPanel {
                 MP1.passwords.put(userText.getText(), passwordText.getText());
                 MP1.roles.put(userText.getText(), String.valueOf(roleChoice.getSelectedItem()));
                 
-                //DATABASE PROCESS
-                //DAO.addRecord(email, password, role);
+                 DAO.addRecord(userText.getText(), passwordText.getText(), String.valueOf(roleChoice.getSelectedItem()));
                 
                 JOptionPane.showMessageDialog(null, "Success!");
                 panel.removeAll();
