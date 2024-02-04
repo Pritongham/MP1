@@ -12,16 +12,17 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 public class EditRecordPanel {
+
     private static final JPanel panel = new JPanel();
     private static final JFrame frame = new JFrame();
-    
-    public static void showEditRecordPanel(String email){
+
+    public static void showEditRecordPanel(String email) {
         frame.setSize(350, 250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.add(panel);
         frame.setTitle("Add Record");
-        
+
         panel.setBorder(new EmptyBorder(0, 25, 0, 25));
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -50,7 +51,7 @@ public class EditRecordPanel {
         gbc.fill = GridBagConstraints.NONE;
         JLabel roleLabel = new JLabel("Role:");
         panel.add(roleLabel, gbc);
-        
+
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 2;
@@ -68,49 +69,41 @@ public class EditRecordPanel {
         gbc.fill = GridBagConstraints.NONE;
         JButton updateRecord = new JButton("Edit Record");
         updateRecord.addActionListener(e -> {
-            if(String.valueOf(roleChoice.getSelectedItem()).equalsIgnoreCase("Guest")
-                    && email.equalsIgnoreCase(MP1.loggedInUser))
-            {
+            if (String.valueOf(roleChoice.getSelectedItem()).equalsIgnoreCase("Guest")
+                    && email.equalsIgnoreCase(MP1.loggedInUser)) {
                 JOptionPane.showMessageDialog(null, "Cannot change your own role");
-            }
-            else
-            {
-                if(!passwordText.getText().isEmpty())
-                {
-                    MP1.passwords.put(email, passwordText.getText());  
-                } 
-                
+            } else {
+                if (!passwordText.getText().isEmpty()) {
+                    MP1.passwords.put(email, passwordText.getText());
+                }
+
                 MP1.roles.put(email, String.valueOf(roleChoice.getSelectedItem()));
+                DAO.updateRecord(email, passwordText.getText(), String.valueOf(roleChoice.getSelectedItem()));
 
-        // Update the record in the database
-        DAO.updateRecord(email, passwordText.getText(), String.valueOf(roleChoice.getSelectedItem()));
-
-                
                 JOptionPane.showMessageDialog(null, "Success!");
                 panel.removeAll();
                 frame.dispose();
                 AdminPanel.showAdminPanel();
             }
         });
-        
+
         panel.add(updateRecord, gbc);
-        
+
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = 3;
         gbc.weightx = 0;
         gbc.fill = GridBagConstraints.NONE;
         JButton goBack = new JButton("Go Back");
-        
+
         goBack.addActionListener(e -> {
             panel.removeAll();
             frame.dispose();
             AdminPanel.showAdminPanel();
         });
-        
+
         panel.add(goBack, gbc);
-        
+
         frame.setVisible(true);
     }
 }
-

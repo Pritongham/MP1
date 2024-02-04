@@ -17,8 +17,8 @@ public class MP1 {
         //AdminPanel.java - line 83 done
         //
         //AddRecordPanel.java - line 98 done
-        //EditRecordPanel.java - line 83 
-        //EditRecordPanel.java - line 91 
+        //EditRecordPanel.java - line 83  done
+        //EditRecordPanel.java - line 91  done
 
         LoginPanel.constructLoginPanel();
     }

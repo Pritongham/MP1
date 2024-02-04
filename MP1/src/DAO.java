@@ -16,6 +16,7 @@ public class DAO {
         try {
             Class.forName(driver);
 
+            //attempt to connect to database
             try (Connection conn = DriverManager.getConnection(url, "app", "app"); Statement statement = conn.createStatement()) {
                 //query user info
                 String queryUserInfo = "SELECT * FROM APP.USERS";
@@ -40,6 +41,7 @@ public class DAO {
         try {
             Class.forName(driver);
 
+            //attempt to connect to database
             try (Connection conn = DriverManager.getConnection(url, "app", "app"); Statement statement = conn.createStatement()) {
                 String insertQuery = "INSERT INTO APP.USERS (EMAIL, PASSWORD, USERROLE) VALUES ('"
                         + email + "', '" + password + "', '" + role + "')";
@@ -57,6 +59,7 @@ public class DAO {
         try {
             Class.forName(driver);
 
+            //attempt to connect to database
             try (Connection conn = DriverManager.getConnection(url, "app", "app"); Statement statement = conn.createStatement()) {
                 String deleteRecordQuery = "DELETE FROM APP.USERS WHERE EMAIL = '" + email + "'";
                 statement.executeUpdate(deleteRecordQuery);
@@ -73,6 +76,7 @@ public class DAO {
         try {
             Class.forName(driver);
 
+            // attempt to connect to database
             try (Connection conn = DriverManager.getConnection(url, "app", "app"); Statement statement = conn.createStatement()) {
 
                 if (!newPassword.isEmpty()) {
